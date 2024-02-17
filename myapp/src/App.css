@@ -1,0 +1,143 @@
+.appContainer{
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: #ebfff2;
+}
+
+.contentContainer{
+  background-color: white;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  font-family: "Arial";
+}
+
+.logoContainer{
+  display: flex;
+  align-items: center;
+}
+
+.companyName{
+  color: #2dc295;
+  font-weight: bold;
+  margin: 0px;
+  margin-left: 15px;
+  font-size: 50px;
+}
+
+.navitemsContainer{
+  display: flex;
+  align-items: center;
+  width: 50%;
+  justify-content: space-around;
+}
+
+.logo{
+  border-style: dashed;
+  border-radius: 50px;
+  border-width: 1px;
+  padding: 10px;
+  border-color: #2dc295;
+  border-width: 1px;
+  cursor: pointer;
+}
+
+#part2 button:nth-child(1) #green{
+  width: 100%;
+  background-color: red;
+  position: absolute;
+  height: 100%;
+}
+
+.addPropertyButton{
+  background-color: #2dc295;
+  border: 0px;
+  border-radius: 5px;
+  height: 50px;
+  width: 130px;
+  font-size: 15px;
+  color: white;
+  cursor: pointer;
+}
+
+.introHeading{
+  font-family: "Arial";
+}
+
+.introPage{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px;
+}
+
+.introHeading{
+  font-size: 55px;
+}
+
+span{
+  color: #2dc295;
+}
+
+.getStartedButton{
+  background-color: #2dc295;
+  border: 0px;
+  border-radius: 5px;
+  height: 70px;
+  width: 200px;
+  font-size: medium;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.premiumHouseImage{
+  width: 40%;
+}
+
+.introPageItem{
+  width: 500px;
+}
+
+.filterContainer{
+  background-color: #2dc295;
+  padding: 30px;
+  display: flex;
+}
+
+.filterItem{
+  border: 0px;
+  border-radius: 5px;
+  margin-right: 10px;
+  height: 55px;
+  flex: 1;
+  font-size: 20px;
+  outline: none;
+  padding: 8px;
+}
+
+.searchPropertyButton{
+  background-color: #161542;
+  color: white;
+  flex: 0.5;
+}
+
+.propertyHeadingContainer{
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #161542;
+}
+
+.propertyTypes{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 20px;
+}

@@ -1,0 +1,16 @@
+.propertyTypeCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-style: dashed;
+    border-width: 1px;
+    border-color: #2dc295;
+    width: 100%;
+    height: 170px;
+    padding-top: 10px;
+}
+
+.propertTypeText{
+    margin: 5px;
+}
