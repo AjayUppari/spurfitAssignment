@@ -1,0 +1,30 @@
+.homeItem{
+    flex-grow: 1;
+    width: calc(33.33% - 20px);
+    margin: 10px;
+}
+
+.homeImage{
+    width: 100%;
+    height: 280px;
+}
+
+.price{
+    font-weight: bold;
+    color: #2dc295;
+    font-size: 25px;
+}
+
+.houseDetails{
+    margin: 5px;
+}
+
+.locationContainer{
+    display: flex;
+    align-items: center;
+}
+
+.locationIcon{
+    color: #2dc295;
+    font-size: 20px;
+}
