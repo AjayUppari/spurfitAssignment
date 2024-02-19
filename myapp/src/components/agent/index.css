@@ -1,0 +1,14 @@
+.agentItem{
+    text-align: center;
+    box-shadow: 1px 8px 10px #ededed;
+    width: 23%;
+    border-radius: 8px;
+}
+
+.propertyAgentsImage{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin: 0px;
+    margin-right: 10px;
+    width: 100%;
+}

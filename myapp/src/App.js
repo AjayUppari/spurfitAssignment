@@ -6,7 +6,9 @@ import PropertyType from './components/propertyType'
 import PropertyItem from "./components/propertItem";
 import { IoCall } from "react-icons/io5";
 import { FaCalendarAlt } from "react-icons/fa";
-
+import { IoMdMail } from "react-icons/io";
+import { v4 as uuidv4 } from 'uuid';
+import Agent from "./components/agent";
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -63,6 +65,8 @@ const propertyTypesList = [
   }
 ]
 
+console.log(propertyTypesList)
+
 const propertiesList = [
   {
     imageUrl: 'https://res.cloudinary.com/dymdlu50w/image/upload/v1708264409/property-6_clcrkc.jpg',
@@ -72,7 +76,7 @@ const propertiesList = [
     location: 'Oak Street, 28-21, New York, USA',
     area: '2400 Sqft',
     bedrooms: '6 Beds',
-    readyToOccupy: 'Yes',
+    readyToOccupy: 'Immediately',
     id: '6523'
   },
 
@@ -96,7 +100,7 @@ const propertiesList = [
     location: 'Lincoln Avenue, Texas, USA',
     area: '1200 Sqft',
     bedrooms: '1 bed',
-    readyToOccupy: 'Yes',
+    readyToOccupy: 'Immediately',
     id: '1349'
   },
 
@@ -120,7 +124,7 @@ const propertiesList = [
     location: 'Serene Lakeside Retreat, Chicago, USA',
     area: "1500 Sqft",
     bedrooms: '6 Beds',
-    readyToOccupy: 'Yes',
+    readyToOccupy: 'Immediately',
     id: '9264'
   },
 
@@ -138,6 +142,34 @@ const propertiesList = [
 
 ]
 
+const agentsList = [
+  {
+    imageUrl: 'https://res.cloudinary.com/dymdlu50w/image/upload/v1708332440/team-1_yrxwas.jpg',
+    name: 'Emily Sanchez',
+    designation: 'Senior Property Consultant',
+    id: uuidv4()
+  },
+  {
+    imageUrl: 'https://res.cloudinary.com/dymdlu50w/image/upload/v1708332440/team-4_kuaqu4.jpg',
+    name: 'Liam Parker',
+    designation: 'Real Estate Specialist',
+    id: uuidv4()
+  },
+  {
+    imageUrl: 'https://res.cloudinary.com/dymdlu50w/image/upload/v1708332440/team-3_llw5rh.jpg',
+    name: 'Sophia Nguyen',
+    designation: 'Residential Property Advisor',
+    id: uuidv4()
+  },
+  {
+    imageUrl: 'https://res.cloudinary.com/dymdlu50w/image/upload/v1708332440/team-2_jhkjr8.jpg',
+    name: 'Ethan Thompson',
+    designation: 'Commercial Property Manager',
+    id: uuidv4()
+  },
+  
+]
+
 const App = () => {
   
   let headline = useRef(null)
@@ -147,7 +179,7 @@ const App = () => {
   useEffect(()=>{
     gsap.fromTo(headline, { x: -100, opacity:0, duration: 1, delay: 0.2}, { x: 40,opacity:1, duration: 1 })
     gsap.fromTo(image, { x: 100, opacity: 0, duration: 1, delay: 0.2}, { x: 0,opacity:1, duration: 1})
-    gsap.fromTo('#propertTypeSection', { y: 300, opacity:0, duration: 1, delay: 0.2}, { y: 20,opacity:1, duration: 1 })
+    gsap.fromTo('.propertyHeadingContainer', { y: 300, opacity:0, duration: 1, delay: 0.2}, { y: 20,opacity:1, duration: 1 })
 
     const el = propertyTypeRef.current
     gsap.fromTo(el, {duration: 1, y: 100}, {y: 0, scrollTrigger: {
@@ -162,6 +194,16 @@ const App = () => {
       trigger: '.section2 img',
     }})
 
+    
+
+    gsap.fromTo('.contactAgent', {opacity: 0, }, {opacity:1, duration: 3, scrollTrigger: {
+      trigger: '.contactAgent',
+    }})
+
+    gsap.fromTo('.contactAgentText', {y: 100,opacity: 0}, {y: 0, opacity:1, stagger: 0.4, scrollTrigger: {
+      trigger: '.contactAgentText',
+    }})
+
     gsap.fromTo('.section2Highlights', {y: 100,opacity: 0}, {y: 0, opacity:1, stagger: 0.4, scrollTrigger: {
       trigger: '.section2Highlights',
     }})
@@ -170,15 +212,23 @@ const App = () => {
       trigger: '.section2MainHighlight',
     }})
 
+    gsap.fromTo('#propertyListing', {x: -250}, {x: 0, duration: 1, scrollTrigger: {
+      trigger: '#propertyListing',
+    }})
+
+    gsap.fromTo('#propertiesFilter', {x: 250}, {x: 0, duration: 1, scrollTrigger: {
+      trigger: '#propertiesFilter',
+    }})
+
   },
   [])
 
   const onHover = () => {
-    gsap.to('.button', {backgroundColor: "#161542", color: "#2dc295"})
+    gsap.to('.button', {opacity: 0.8, duration: 0.2})
   }
 
   const onCursorLeave = () => {
-    gsap.to('.button', {backgroundColor: "#2dc295", color: "white"})
+    gsap.to('.button', {opacity: 1, duration: 0.2})
   }
 
 
@@ -218,85 +268,140 @@ const App = () => {
           <div className='filterContainer'>
             <input placeholder='Search Property' className='filterItem' type='search' />
             <select className='filterItem' placeholder='Property Type'>
-              <option>Property Type 1</option>
-              <option>Property Type 1</option>
-              <option>Property Type 1</option>
+              <option>Villa</option>
+              <option>Building</option>
+              <option>House</option>
+              <option>Shop</option>
             </select>
             <select className='filterItem' placeholder='Location'>
-              <option>Property Type 1</option>
-              <option>Property Type 1</option>
-              <option>Property Type 1</option>
+              <option>USA</option>
+              <option>India</option>
+              <option>Europe</option>
             </select>
             <button className='searchPropertyButton filterItem' type='button'>Search</button>
           </div>
         </div>
 
         <div className="bottomContentContainer">
-        <div ref={propertyTypeRef} className='propertyTypesContainer'>
-            <div className='propertyHeadingContainer' id="propertTypeSection">
-              <h1>Property Types</h1>
-              <p>Discover a diverse array of property types tailored to suit every lifestyle and need on our website's landing page.</p>
-            </div>
-          </div>
-
-          <div id="cardList" className="propertyTypes">
-            {
-              propertyTypesList.map((eachItem) => <PropertyType key={eachItem.id} propertyDetails={eachItem} />)
-            }
-          </div>
-
-          <div className="section2">
-            <img className="premiumHouseImage" src='https://res.cloudinary.com/dymdlu50w/image/upload/v1708248645/section2_image_s8dn88.jpg' alt='house image' />
-            <div className="section2Item">
-              <h1 className="introHeading section2MainHighlight">#1 Place To Find The Perfect Property</h1>
-              <p className="highlightSubheading section2Highlights">
-                Discover your ideal property effortlessly with our curated listings tailored to 
-                your preferences. Unlock the door to your dream home by exploring our comprehensive 
-                selection of top-rated properties.
-              </p>
-              <ul className="top3Features section2Highlights">
-                <li className="top3Feature section2Highlights">Comprehensive search filters</li>
-                <li className="top3Feature section2Highlights">Detailed property listings</li>
-                <li className="top3Feature section2Highlights">Expert guidance</li>
-              </ul>
-              <button className="getStartedButton button section2Highlights" type="button">Read More</button>
-            </div>
-          </div>
-
-          <div className="propertiesContainer">
-            <div className="propertiesContainerItem">
-              <h1>PropertyListing</h1>
-              <p>
-                Discover your dream home amidst our curated selection of exquisite houses for sale, 
-                each offering a unique blend of comfort, style, and possibility.
-              </p>
-            </div>
-            <div className="propertiesFilterButtonContaier">
-              <button className="propertiesFilterButton propertiesFilterButtonActive" type='button'>Featured</button>
-              <button className="propertiesFilterButton"type='button'>For Sell</button>
-              <button className="propertiesFilterButton"type='button'>For Rent</button>
-            </div>
-
-          </div>
-
-          <div className="housesContainer">
-            {
-              propertiesList.map(eachItem => <PropertyItem key={eachItem.id} propertyDetails={eachItem} /> )
-            }
-          </div>
-
-          <div className="section2">
-            <img src="https://res.cloudinary.com/dymdlu50w/image/upload/v1708328027/call-to-action_jzqvqj.jpg" className="agentImage" alt='agentImage' />
-            <div>
-              <h1>Contact with our certified Agent</h1>
-              <p>After contacting our certified Agent, you'll receive personalized assistance tailored to your needs, ensuring a seamless experience every step of the way.</p>
-              <div>
-                <button className="callnowButton mediumsizeButton" type="button"><IoCall /> Make a call</button>
-                <button className="getAppoitnmentButton mediumsizeButton" type='button'><FaCalendarAlt /> Get Appointment</button>
+          <div ref={propertyTypeRef} className='propertyTypesContainer'>
+              <div className='propertyHeadingContainer' id="propertTypeSection">
+                <h1>Property Types</h1>
+                <p>Discover a diverse array of property types tailored to suit every lifestyle and need on our website's landing page.</p>
               </div>
             </div>
-          </div>
+
+            <div id="cardList" className="propertyTypes">
+              {
+                propertyTypesList.map((eachItem) => <PropertyType key={eachItem.id} propertyDetails={eachItem} />)
+              }
+            </div>
+
+            <div className="section2">
+              <img className="premiumHouseImage" src='https://res.cloudinary.com/dymdlu50w/image/upload/v1708248645/section2_image_s8dn88.jpg' alt='house image' />
+              <div className="section2Item">
+                <h1 className="introHeading section2MainHighlight">#1 Place To Find The Perfect Property</h1>
+                <p className="highlightSubheading section2Highlights">
+                  Discover your ideal property effortlessly with our curated listings tailored to 
+                  your preferences. Unlock the door to your dream home by exploring our comprehensive 
+                  selection of top-rated properties.
+                </p>
+                <ul className="top3Features section2Highlights">
+                  <li className="top3Feature section2Highlights">Comprehensive search filters</li>
+                  <li className="top3Feature section2Highlights">Detailed property listings</li>
+                  <li className="top3Feature section2Highlights">Expert guidance</li>
+                </ul>
+                <button className="getStartedButton button section2Highlights" type="button">Read More</button>
+              </div>
+            </div>
+
+            <div className="propertiesContainer">
+              <div id='propertyListing' className="propertiesContainerItem">
+                <h1>PropertyListing</h1>
+                <p>
+                  Discover your dream home amidst our curated selection of exquisite houses for sale, 
+                  each offering a unique blend of comfort, style, and possibility.
+                </p>
+              </div>
+              <div id='propertiesFilter' className="propertiesFilterButtonContaier">
+                <button className="propertiesFilterButton propertiesFilterButtonActive" type='button'>Featured</button>
+                <button className="propertiesFilterButton"type='button'>For Sell</button>
+                <button className="propertiesFilterButton"type='button'>For Rent</button>
+              </div>
+
+            </div>
+
+            <div className="housesContainer">
+              {
+                propertiesList.map(eachItem => <PropertyItem key={eachItem.id} propertyDetails={eachItem} /> )
+              }
+            </div>
+
+            <div className="contactAgentTextContainer">
+              <img src="https://res.cloudinary.com/dymdlu50w/image/upload/v1708328027/call-to-action_jzqvqj.jpg" className="contactAgent" alt='agentImage' />
+              <div className="contactAgentText">
+                <h1 className="contactAgentText">Contact with our certified Agent</h1>
+                <p className="contactAgentText">After contacting our certified Agent, you'll receive personalized assistance tailored to your needs, ensuring a seamless experience every step of the way.</p>
+                <div>
+                  <button className="callnowButton mediumsizeButton" type="button"><IoCall /> Make a call</button>
+                  <button className="getAppoitnmentButton mediumsizeButton" type='button'><FaCalendarAlt /> Get Appointment</button>
+                </div>
+              </div>
+            </div>
+
+            <div className="propertyHeadingContainer">
+              <h1>Property Agents</h1>
+              <p>Trust our experienced property agents to guide you through every step of your real estate journey.</p>
+            </div>
+            
+            <div className="agentsContainer">
+              {
+                agentsList.map(eachItem => <Agent id={eachItem.id} agentDetails={eachItem} />)
+              }
+            </div>
+
+            <div className="clientsHeadingSection">
+              <h1>Our Clients Say!</h1>
+              <p>Discover why our clients rave about their real estate experience with us!</p>
+            </div>
+
+            <div className="clientsReviewsContainer">
+              <div className="box"></div>
+              <div className="box"></div>
+              <div className="box"></div>
+              <div className="box"></div>
+              <div className="box"></div>
+            </div>
         </div>
+      </div>
+      <div className="finalSection">
+            <div className="finalSectionItem">
+              <h1>Get in Touch</h1>
+              <p>
+                1234 Maple Street,
+                Cityville, State 54321,
+                United States
+              </p>
+              <p><IoCall /> 6303820690</p>
+              <p><IoMdMail /> homefyhelp@gmail.com</p>
+            </div>
+            <div className="finalSectionItem">
+              <h1>Quick Links</h1>
+              <ul>
+                <li>ABout us</li>
+                <li>Contact us</li>
+                <li>Our services</li>
+                <li>Privacy Policy</li>
+                <li>Terms and Conditions</li>
+              </ul>
+            </div>
+            <div className="finalSectionItem">
+              <h1>Newsletter</h1>
+              <p>Stay informed! Subscribe to our newsletter for the latest updates, tips, and exclusive offers delivered straight to your inbox.</p>
+              <div className="subscribeContainer">
+                <input className="subscribeMailInput" placeholder="Your email" type='text' />
+                <button className="signupButton" type='button'>Sign up</button>
+              </div>              
+            </div>
       </div>
     </div>
   );
