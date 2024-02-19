@@ -2,11 +2,21 @@
     flex-grow: 1;
     width: calc(33.33% - 20px);
     margin: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 8px 10px #ededed;
 }
+
 
 .homeImage{
     width: 100%;
     height: 280px;
+    padding: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.homeInformationContainer{
+    padding: 15px;
 }
 
 .price{
@@ -17,6 +27,8 @@
 
 .houseDetails{
     margin: 5px;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .locationContainer{
@@ -24,7 +36,20 @@
     align-items: center;
 }
 
-.locationIcon{
+.propertyFeatures{
+    display: flex;
+    justify-content: space-between;
+}
+
+.propertyFeatureItem{
+    padding: 10px;
+    box-sizing: content-box;
+    display: flex;
+    align-items: center;
+}
+
+.reactIcon{
+    margin-right: 10px;
     color: #2dc295;
     font-size: 20px;
 }

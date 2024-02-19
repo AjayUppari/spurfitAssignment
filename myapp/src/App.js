@@ -4,6 +4,9 @@ import {gsap} from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import PropertyType from './components/propertyType'
 import PropertyItem from "./components/propertItem";
+import { IoCall } from "react-icons/io5";
+import { FaCalendarAlt } from "react-icons/fa";
+
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -159,7 +162,7 @@ const App = () => {
       trigger: '.section2 img',
     }})
 
-    gsap.fromTo('.section2Highlights', {y: 100,opacity: 0, delay: 1}, {y: 0, opacity:1, duration: 1, delay: 1, stagger: 0.4, scrollTrigger: {
+    gsap.fromTo('.section2Highlights', {y: 100,opacity: 0}, {y: 0, opacity:1, stagger: 0.4, scrollTrigger: {
       trigger: '.section2Highlights',
     }})
 
@@ -280,6 +283,18 @@ const App = () => {
             {
               propertiesList.map(eachItem => <PropertyItem key={eachItem.id} propertyDetails={eachItem} /> )
             }
+          </div>
+
+          <div className="section2">
+            <img src="https://res.cloudinary.com/dymdlu50w/image/upload/v1708328027/call-to-action_jzqvqj.jpg" className="agentImage" alt='agentImage' />
+            <div>
+              <h1>Contact with our certified Agent</h1>
+              <p>After contacting our certified Agent, you'll receive personalized assistance tailored to your needs, ensuring a seamless experience every step of the way.</p>
+              <div>
+                <button className="callnowButton mediumsizeButton" type="button"><IoCall /> Make a call</button>
+                <button className="getAppoitnmentButton mediumsizeButton" type='button'><FaCalendarAlt /> Get Appointment</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

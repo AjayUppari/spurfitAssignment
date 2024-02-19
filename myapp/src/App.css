@@ -214,3 +214,29 @@ span{
   margin-top: 35px;
 }
 
+.agentImage{
+  width: 50%;
+  height: 400px;
+  margin-right: 25px;
+}
+
+.mediumsizeButton{
+  width: 180px;
+  padding: 20px;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.callnowButton{
+  color: white;
+  background-color: #2dc295;
+  margin-right: 15px;
+}
+
+.getAppoitnmentButton{
+  color: white;
+  background-color: #161542;
+
+}

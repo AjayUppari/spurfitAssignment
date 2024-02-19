@@ -2,6 +2,12 @@ import { FaLocationDot } from "react-icons/fa6";
 import { useEffect } from "react";
 import {gsap} from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FaRulerCombined } from "react-icons/fa";
+import { FaBed } from "react-icons/fa";
+import { FaPersonWalking } from "react-icons/fa6";
+
+
+
 import './index.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -19,11 +25,27 @@ const PropertyItem = (props) => {
     return(
         <div className="homeItem">
             <img className='homeImage' src={imageUrl} alt='propertyImage' />
-            <p className='price houseDetails'>{price}</p>
-            <p className='houseDetails'>{title}</p>
-            <div className="locationContainer">
-                <FaLocationDot className="locationIcon" /> 
-                <p className='houseDetails'>{location}</p>
+            <div className="homeInformationContainer">
+                <p className='price houseDetails'>{price}</p>
+                <p className='houseDetails'>{title}</p>
+                <div className="locationContainer">
+                    <FaLocationDot className="reactIcon" /> 
+                    <p>{location}</p>
+                </div>
+                <div className="propertyFeatures">
+                    <div className="propertyFeatureItem">
+                        <FaRulerCombined className="reactIcon" />
+                        <p>{area}</p>
+                    </div>
+                    <div className="propertyFeatureItem">
+                        <FaBed className="reactIcon" />
+                        <p>{bedrooms}</p>
+                    </div>
+                    <div className="propertyFeatureItem">
+                        <FaPersonWalking className="reactIcon" />
+                        <p>{readyToOccupy}</p>
+                    </div>
+                </div>
             </div>
         </div>
     )
