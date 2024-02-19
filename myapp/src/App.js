@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react"
+import React, {useEffect, useRef, useState} from "react"
 import './App.css';
 import {gsap} from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,6 +9,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { v4 as uuidv4 } from 'uuid';
 import Agent from "./components/agent";
+import { FaGoogleDrive } from "react-icons/fa6";
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -64,8 +65,6 @@ const propertyTypesList = [
   id: "aonr"
   }
 ]
-
-console.log(propertyTypesList)
 
 const propertiesList = [
   {
@@ -170,13 +169,13 @@ const agentsList = [
   
 ]
 
-const App = () => {
-  
+const App = () => {  
   let headline = useRef(null)
   let image = useRef(null)
   const propertyTypeRef = useRef(null)
 
   useEffect(()=>{
+
     gsap.fromTo(headline, { x: -100, opacity:0, duration: 1, delay: 0.2}, { x: 40,opacity:1, duration: 1 })
     gsap.fromTo(image, { x: 100, opacity: 0, duration: 1, delay: 0.2}, { x: 0,opacity:1, duration: 1})
     gsap.fromTo('.propertyHeadingContainer', { y: 300, opacity:0, duration: 1, delay: 0.2}, { y: 20,opacity:1, duration: 1 })
@@ -193,8 +192,6 @@ const App = () => {
     gsap.fromTo('.section2 img', {opacity: 0, }, {opacity:1, duration: 3, scrollTrigger: {
       trigger: '.section2 img',
     }})
-
-    
 
     gsap.fromTo('.contactAgent', {opacity: 0, }, {opacity:1, duration: 3, scrollTrigger: {
       trigger: '.contactAgent',
@@ -219,7 +216,6 @@ const App = () => {
     gsap.fromTo('#propertiesFilter', {x: 250}, {x: 0, duration: 1, scrollTrigger: {
       trigger: '#propertiesFilter',
     }})
-
   },
   [])
 
@@ -231,6 +227,21 @@ const App = () => {
     gsap.to('.button', {opacity: 1, duration: 0.2})
   }
 
+  const onHoverAddProperty = () => {
+    gsap.to('#addProperty', {opacity: 0.8, duration: 0.2})
+  }
+
+  const onCursorLeaveAddProperty = () => {
+    gsap.to('#addProperty', {opacity: 1, duration: 0.2})
+  }
+
+  const onHoverSearch = () => {
+    gsap.to('#searchProperties', {backgroundColor: '#0207a6', duration: 0.2, })
+  }
+
+  const onCursorLeaveSearch = () => {
+    gsap.to('#searchProperties', {opacity: 1, duration: 0.2, backgroundColor: '#161542'})
+  }
 
   return (
     <div className="App">
@@ -249,7 +260,7 @@ const App = () => {
                   <p className="navitemText">PROPERTY</p>
                   <p className="navitemText">PAGES</p>
                   <p className="navitemText">CONTACT</p>
-                  <button type="button" className="addPropertyButton">Add Property</button>
+                  <button onMouseLeave={onCursorLeaveAddProperty} onMouseEnter={onHoverAddProperty} id='addProperty' type="button" className="addPropertyButton">Add Property</button>
               </div>
           </nav>
           <div className="introPage">
@@ -278,7 +289,7 @@ const App = () => {
               <option>India</option>
               <option>Europe</option>
             </select>
-            <button className='searchPropertyButton filterItem' type='button'>Search</button>
+            <button onMouseEnter={onHoverSearch} onMouseLeave={onCursorLeaveSearch} id='searchProperties' className='searchPropertyButton filterItem' type='button'>Search</button>
           </div>
         </div>
 
@@ -327,7 +338,6 @@ const App = () => {
                 <button className="propertiesFilterButton"type='button'>For Sell</button>
                 <button className="propertiesFilterButton"type='button'>For Rent</button>
               </div>
-
             </div>
 
             <div className="housesContainer">
@@ -342,8 +352,8 @@ const App = () => {
                 <h1 className="contactAgentText">Contact with our certified Agent</h1>
                 <p className="contactAgentText">After contacting our certified Agent, you'll receive personalized assistance tailored to your needs, ensuring a seamless experience every step of the way.</p>
                 <div>
-                  <button className="callnowButton mediumsizeButton" type="button"><IoCall /> Make a call</button>
-                  <button className="getAppoitnmentButton mediumsizeButton" type='button'><FaCalendarAlt /> Get Appointment</button>
+                  <button className="callnowButton mediumsizeButton" type="button"><IoCall className="contactIcon" /> Make a call</button>
+                  <button className="getAppoitnmentButton mediumsizeButton" type='button'><FaCalendarAlt className="contactIcon" /> Get Appointment</button>
                 </div>
               </div>
             </div>
@@ -358,21 +368,9 @@ const App = () => {
                 agentsList.map(eachItem => <Agent id={eachItem.id} agentDetails={eachItem} />)
               }
             </div>
-
-            <div className="clientsHeadingSection">
-              <h1>Our Clients Say!</h1>
-              <p>Discover why our clients rave about their real estate experience with us!</p>
-            </div>
-
-            <div className="clientsReviewsContainer">
-              <div className="box"></div>
-              <div className="box"></div>
-              <div className="box"></div>
-              <div className="box"></div>
-              <div className="box"></div>
-            </div>
         </div>
       </div>
+
       <div className="finalSection">
             <div className="finalSectionItem">
               <h1>Get in Touch</h1>
